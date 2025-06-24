@@ -13,7 +13,7 @@ public class UserController {
 
     private final UserService userService;
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable int id){
+    public ResponseEntity<?> findUserById(@RequestParam int id){
         Users userById = userService.getUserById(id);
         return new ResponseEntity<>(userById, HttpStatus.OK);
     }
