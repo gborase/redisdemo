@@ -2,18 +2,17 @@ package com.ganesh.redisDemo.controller;
 
 import com.ganesh.redisDemo.entity.Users;
 import com.ganesh.redisDemo.service.UserService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
 public class UserController {
-
-    private final UserService userService;
+@Autowired
+    private  UserService userService;
     @GetMapping("/{id}")
-    public ResponseEntity<?> findUserById(@RequestParam int id){
+    public ResponseEntity<?> findUserById(@PathVariable int id){
         Users userById = userService.getUserById(id);
         return new ResponseEntity<>(userById, HttpStatus.OK);
     }
