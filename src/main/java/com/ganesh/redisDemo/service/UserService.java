@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private  UserRepository userRepository;
-    @Cacheable(value="users",key = "#id")
+    @Cacheable(value="user",key = "#id")
     public Users getUserById(int id){
         return userRepository.findById(id).orElse(null);
     }
-    @CachePut(value="users",key = "#user.id")
+    @CachePut(value="user",key = "#user.id")
     public Users createUser(Users user){
       return   userRepository.save(user);
     }
 
-@CacheEvict(value="users",key = "#id")
+@CacheEvict(value="user",key = "#id")
     public void deleteUser(int id){
         userRepository.deleteById(id);
     }
